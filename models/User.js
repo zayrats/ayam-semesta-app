@@ -1,7 +1,12 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../utils/dbConnect');
+import { DataTypes } from 'sequelize';
+import sequelize from '../utils/dbConnect';
 
 const User = sequelize.define('User', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -20,7 +25,8 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
 }, {
-  timestamps: false
+  tableName: 'users',
+  timestamps: false,
 });
 
-module.exports = User;
+export default User;

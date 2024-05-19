@@ -1,9 +1,7 @@
 import User from '../../models/User';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-// import sequelize from '../../utils/dbConnect';
-import sequelize from '@/utils/dbConnect';
-
+import sequelize from '../../utils/dbConnect';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
