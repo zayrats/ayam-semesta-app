@@ -1,28 +1,71 @@
-import User from '../../models/User';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import sequelize from '../../utils/db';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link'; // Pastikan Link diimpor
+import styles from '../styles/Login.module.css';
 
-export default async function handler(req, res) {
-  const { email, password } = req.body;
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
 
-  try {
-    await sequelize.sync();
-    const user = await User.findOne({ where: { email } });
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(''); // Clear previous errors
+
+    try {
+      const res = await fetch(`${process.env.API_URL}/api/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        router.push('/');
+      } else {
+        const errorData = await res.json();
+        setError(errorData.message || 'Login failed. Please check your credentials or register an account.');
+      }
+    } catch (error) {
+      setError('An unexpected error occurred. Please try again later.');
     }
+  };
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-
-    const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
-
-    res.status(200).json({ token, user: { id: user.id, email: user.email, name: user.name, phone: user.phone } });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
+  return (
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <h2>Login</h2>
+        {error && <p className={styles.error}>{error}</p>}
+        <div>
+          <label>Email:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className={styles.input}
+            required
+          />
+        </div>
+        <div>
+          <label>Password:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.input}
+            required
+          />
+        </div>
+        <button type="submit" className={styles.button}>Login</button>
+        <p className={styles.redirect}>
+          Don't have an account? <Link href="/register" legacyBehavior><a>Register</a></Link>
+        </p>
+      </form>
+    </div>
+  );
 }
