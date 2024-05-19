@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link'; // Pastikan Link diimpor
+import Link from 'next/link';
 import styles from '../styles/Login.module.css';
 
 export default function Login() {
@@ -12,21 +12,27 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(''); // Clear previous errors
-    const res = await fetch('https://ayam-semesta-app.vercel.app/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
-    });
 
-    if (res.ok) {
-      const data = await res.json();
-      localStorage.setItem('user', JSON.stringify(data.user));
-      localStorage.setItem('token', data.token);
-      router.push('/');
-    } else {
-      setError('Login failed. Please check your credentials or register an account.');
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('token', data.token);
+        router.push('/');
+      } else {
+        const errorData = await res.json();
+        setError(errorData.message || 'Login failed. Please check your credentials or register an account.');
+      }
+    } catch (error) {
+      setError('An unexpected error occurred. Please try again later.');
     }
   };
 
