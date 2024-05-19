@@ -1,7 +1,62 @@
+/* styles/globals.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  padding: 20px;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+
+@media (max-width: 600px) {
+  div {
+    padding: 10px;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
 /* Reset CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.main{
+  padding-top: 8%;  /* Sesuaikan dengan tinggi nyata Navbar Anda */
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  margin: auto;
+  justify-content: center;
+}
+
 
 html {
   line-height: 1.15;
@@ -157,4 +212,271 @@ footer {
 
 .fadeIn {
   animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  gap: 1rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form input, .form button {
+  padding: 0.8rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.form input:focus {
+  border-color: #0070f3;
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
+}
+
+.form button {
+  background-color: #0070f3;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.form button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.imgContainer {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.cardBody {
+  padding: 15px;
+  text-align: center;
+}
+
+.price {
+  font-size: 1.2rem;
+  color: #0070f3;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.button {
+  background-color: #0070f3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Add to your CSS file */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap');
+
+.main-about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px;
+  background: url('/images/backgorund.jpeg') no-repeat center center;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero-about.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 8%;
+}
+
+.main-about h1 {
+  font-family: 'Roboto Slab', serif;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.main-about p {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeInUp {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 20px;
+}
+
+.gallery img {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.timeline {
+  position: relative;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden; /* Pastikan semua konten di dalam timeline tidak meluap */
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 92.8%;
+  background: #FFF;
+  z-index: 0; /* Garis timeline harus di belakang entri */
+}
+
+.timeline-entry {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.3); /* Transparansi diturunkan untuk visibilitas */
+  margin-bottom: 10px; /* Tambahkan ruang antar entri */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1; /* Elemen entri harus di atas garis timeline */
+}
+
+.timeline-entry::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #0070f3;
+  z-index: 2; /* Bulatan pada timeline di atas entri dan garis */
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 10px;
+    transform: translateX(0);
+  }
+
+  .timeline-entry {
+    padding-left: 30px; /* Memberikan ruang untuk bulatan pada layar kecil */
+  }
+
+  .timeline-entry::before {
+    left: 10px;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.slide-up {
+  animation: slideUp 1s ease-out forwards;
+}
+/* styles/globals.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  padding: 20px;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+
+@media (max-width: 600px) {
+  div {
+    padding: 10px;
+  }
+
+  input {
+    width: 100%;
+  }
 }
