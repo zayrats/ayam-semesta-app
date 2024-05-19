@@ -1,8 +1,8 @@
-import { Sequelize } from 'sequelize';
+const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize(process.env.DATABASE_URL, {
+const sequelize = new Sequelize('ayam_semesta', 'root', '', {
+  host: 'localhost',
   dialect: 'mysql',
-  logging: false,
 });
 
 (async () => {
@@ -14,4 +14,4 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   }
 })();
 
-export default sequelize;
+module.exports = sequelize;

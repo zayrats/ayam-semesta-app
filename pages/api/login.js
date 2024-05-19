@@ -5,7 +5,7 @@ import styles from '../../styles/Login.module.css';
 import User from '../../models/User';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import sequelize from '../../utils/dbConnect';
+import sequelize from '../../utils/db';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
