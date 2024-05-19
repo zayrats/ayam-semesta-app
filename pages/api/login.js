@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link'; // Pastikan Link diimpor
-import styles from '../styles/Login.module.css';
+import styles from '../../styles/Login.module.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
