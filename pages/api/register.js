@@ -1,6 +1,6 @@
 import User from '../../models/User';
 import bcrypt from 'bcryptjs';
-import sequelize from '../../utils/dbConnect';
+import sequelize from '../../utils/db';
 
 export default async function handler(req, res) {
   const { email, password, name, phone } = req.body;
