@@ -36,14 +36,15 @@
 //   }
 // }
 
-const User = require('../../models/User');
+const User = require('../../../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const sequelize = require('../../utils/db');
+const sequelize = require('../../../utils/db');
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { email, password } = req.body;
+    console.log(email, password);   
 
     try {
       await sequelize.sync(); // Ensure the database is synced
