@@ -1,13 +1,15 @@
-// pages/_app.js
-import "../styles/globals.css"; // Sesuaikan path ini berdasarkan struktur folder proyek Anda
+import '../styles/globals.css';
+import { AuthProvider } from '../context/AuthContext';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
-      <header />
+    <AuthProvider>
+      <Navbar />
       <Component {...pageProps} />
-      <footer />
-    </div>
+      <Footer />
+    </AuthProvider>
   );
 }
 

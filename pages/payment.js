@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import styles from '../styles/Payment.module.css'; // Mengimpor file CSS untuk styling
+import styles from '../styles/Payment.module.css';
 
 export default function Payment() {
   const [orderData, setOrderData] = useState(null);
@@ -48,12 +48,27 @@ export default function Payment() {
     if (orderData) {
       const message = `Terima kasih telah melakukan pemesanan. Berikut detail pesanan Anda:\n\n${selectedItems.map(item => `${item.name} x ${item.quantity}: ${item.price * item.quantity} IDR`).join('\n')}\n\nTotal: ${totalPrice} IDR\n\nTerima kasih!`;
       const phoneNumber = orderData.phone.startsWith('0') ? `62${orderData.phone.slice(1)}` : orderData.phone;
-
-      // Mengirim pesan WhatsApp (hanya contoh, implementasi sesungguhnya memerlukan API WhatsApp atau layanan pihak ketiga)
-      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
+  
+      try {
+        const res = await fetch('/api/whatsapp', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ phoneNumber, message }),
+        });
+  
+        if (res.ok) {
+          console.log('WhatsApp message sent successfully');
+        } else {
+          console.error('Failed to send WhatsApp message');
+        }
+      } catch (error) {
+        console.error('Error sending WhatsApp message:', error);
+      }
     }
   };
+  
 
   const handleBackToMenu = () => {
     router.push('/menu');
@@ -61,7 +76,6 @@ export default function Payment() {
 
   return (
     <div>
-      <Navbar />
       <main className={styles.main}>
         <h1>Payment</h1>
         <h2>Order Details</h2>
@@ -106,7 +120,6 @@ export default function Payment() {
           </div>
         )}
       </main>
-      <Footer />
     </div>
   );
 }

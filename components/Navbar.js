@@ -9,21 +9,31 @@ const Navbar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    setUser(user);
+    const handleStorageChange = () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      setUser(user);
+    };
+
+    handleStorageChange();
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
     setUser(null);
+    window.dispatchEvent(new Event('storage')); // Trigger storage event
     router.push('/');
   };
 
   return (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl mx-auto p-4 flex justify-between items-center flex-wrap">
-        {/* Link disertai dengan Image yang digunakan sebagai logo */}
         <Link href="/" legacyBehavior>
           <a className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer">
             <Image src="/images/logo_ayam.png" width={100} height={32} alt="Logo" />
@@ -31,7 +41,6 @@ const Navbar = () => {
           </a>
         </Link>
         
-        {/* Toggle button untuk mobile menu */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="text-gray-500 hover:text-gray-600 dark:hover:text-gray-400 md:hidden"
@@ -40,14 +49,10 @@ const Navbar = () => {
           aria-expanded={isMenuOpen}
         >
           <span className="sr-only">Open main menu</span>
-          {/* Hamburger Icon */}
-          {/* ... */}
         </button>
 
-        {/* Navigasi untuk desktop dan mobile */}
         <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="mobile-menu">
           <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0">
-            {/* Gunakan Link dengan legacyBehavior */}
             <li className="block cursor-pointer">
               <Link href="/" legacyBehavior>
                 <a>Home</a>

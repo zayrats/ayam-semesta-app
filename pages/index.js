@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import Image from 'next/image';
 import styles from '../styles/Home.module.css';
-import Navbar from '../components/Navbar'; // Pastikan Anda memiliki komponen Navbar
-import Footer from '../components/Footer'; // Pastikan Anda memiliki komponen Footer
-import Image from 'next/image'; // Menggunakan komponen Image dari Next.js
 
 export default function Home() {
   const [user, setUser] = useState(null);
@@ -22,11 +22,10 @@ export default function Home() {
     router.push('/');
   };
 
-  // Data placeholder untuk dish dan testimonial, ganti dengan data sebenarnya
   const featuredDishes = [
-    { id: 1, name: 'Classic Fried Chicken', imageUrl: '/images/dish1.jpg' },
-    { id: 2, name: 'Spicy Fried Chicken', imageUrl: '/images/dish2.jpg' },
-    { id: 3, name: 'Grilled Chicken', imageUrl: '/images/dish3.jpg' }
+    { id: 1, name: 'Classic Fried Chicken', imageUrl: '/images/dish1.jpeg' },
+    { id: 2, name: 'Spicy Fried Chicken', imageUrl: '/images/dish2.jpeg' },
+    { id: 3, name: 'Grilled Chicken', imageUrl: '/images/dish3.jpeg' }
   ];
 
   const testimonials = [
@@ -36,10 +35,9 @@ export default function Home() {
   ];
 
   return (
-    <div>
-      <Navbar />
-      <main className="main">
-        <section className="hero-section text-white bg-cover bg-center py-20" style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}>
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <section className={styles.heroSection}>
           <div className="container mx-auto text-center">
             <h1 className="text-5xl font-bold mb-4">Welcome to Ayam Semesta!</h1>
             <p>Discover the best fried chicken in town.</p>
@@ -86,7 +84,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

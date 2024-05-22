@@ -1,23 +1,23 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+// pages/about.js
+import styles from "../styles/About.module.css";
 
 export default function About() {
   return (
     <div>
-      <Navbar />
-      <main className="main-about fadeInUp">
+
+      <main className={styles.mainAbout + " fadeInUp"}>
         <h1>Welcome to Ayam Semesta</h1>
         <p>
           Discover the story behind our passion for creating the best fried
           chicken experiences.
         </p>
-        <div className="gallery">
+        <div className={styles.gallery}>
           <img src="/images/Chicken_Wings(2).jpeg" alt="Gallery Image 1" />
           <img src="/images/Chicken_Wings(2).jpeg" alt="Gallery Image 2" />
           <img src="/images/Chicken_Wings(2).jpeg" alt="Gallery Image 3" />
         </div>
-        <div className="timeline">
-          <div className="timeline-entry">
+        <div className={styles.timeline}>
+          <div className={styles.timelineEntry}>
             <p>
               <strong>2020 - Pembukaan Lokasi Pertama</strong>
             </p>
@@ -26,7 +26,7 @@ export default function About() {
               menyuguhkan ayam goreng klasik yang segera menjadi favorit lokal.
             </p>
           </div>
-          <div className="timeline-entry">
+          <div className={styles.timelineEntry}>
             <p>
               <strong>2021 - Peluncuran Ayam Pedas</strong>
             </p>
@@ -35,7 +35,7 @@ export default function About() {
               memperkenalkan varian baru: Ayam Pedas yang gurih.
             </p>
           </div>
-          <div className="timeline-entry">
+          <div className={styles.timelineEntry}>
             <p>
               <strong>2022 - Ekspansi ke Kota Lain dan Penghargaan</strong>
             </p>
@@ -45,7 +45,7 @@ export default function About() {
               Magazine.
             </p>
           </div>
-          <div className="timeline-entry">
+          <div className={styles.timelineEntry}>
             <p>
               <strong>2023 - Inisiatif Ramah Lingkungan</strong>
             </p>
@@ -56,7 +56,7 @@ export default function About() {
           </div>
         </div>
       </main>
-      <Footer />
+
     </div>
   );
 }

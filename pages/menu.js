@@ -3,22 +3,28 @@ import { useRouter } from 'next/router';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ProductCard from '../components/ProductCard';
-import styles from '../styles/Menu.module.css'; // Mengimpor file CSS untuk styling
-
-// Example product data
-const products = [
-  { id: 1, name: 'Classic Fried Chicken', description: 'Crispy and juicy fried chicken', price: 50000, imageUrl: '/images/Chicken_Wings(1).jpeg' },
-  { id: 2, name: 'Spicy Fried Chicken', description: 'Hot and spicy flavor', price: 55000, imageUrl: '/images/Chicken_Wings(2).jpeg' },
-  // ... other products
-];
+import styles from '../styles/Menu.module.css';
 
 export default function Menu() {
+  const [products, setProducts] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isOrderFilled, setIsOrderFilled] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch('/api/menu');
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+
     const token = localStorage.getItem('token');
     const orderData = JSON.parse(localStorage.getItem('orderData'));
     if (token) {
@@ -55,7 +61,6 @@ export default function Menu() {
 
   return (
     <div>
-      <Navbar />
       <main className={styles.main}>
         <h1>Our Menu</h1>
         <div className={styles.cartIcon}>
@@ -77,7 +82,6 @@ export default function Menu() {
           <button className={styles.button} onClick={handleProceedToPayment}>Proceed to Payment</button>
         )}
       </main>
-      <Footer />
     </div>
   );
 }

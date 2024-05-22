@@ -1,0 +1,154 @@
+/* dashboard.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f9;
+    min-height: 100vh;
+    /* margin-top: 8%; */
+  }
+  
+  .header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0070f3;
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header h1 {
+    margin: 0;
+  }
+  
+  .header button {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .header button:hover {
+    background-color: #e04345;
+  }
+  
+  .main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: rgb(151, 151, 151);
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 8%;
+  }
+  
+
+
+  .addItem {
+    margin-bottom: 20px;
+  }
+  
+  .addItem h2 {
+    margin-bottom: 10px;
+  }
+  
+  .addItem input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: black;
+  }
+  
+  .addItem button {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .addItem button:hover {
+    background-color: #005bb5;
+  }
+  
+  .menuItems {
+    width: 100%;
+  }
+  
+  .menuItems h2 {
+    margin-bottom: 10px;
+  }
+  
+  .menuItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menuItem img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 5px;
+  }
+  
+  .menuItem input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    color: black;
+  }
+  
+  .menuItem button {
+    padding: 10px 20px;
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .menuItem button:hover {
+    background-color: #e04345;
+  }
+  
+  .menuItem button:nth-child(3) {
+    background-color: #0070f3;
+    margin-left: 10px;
+  }
+  
+  .menuItem button:nth-child(3):hover {
+    background-color: #005bb5;
+  }
+  
+  .success {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  .edit {
+    color: yellow;
+  }

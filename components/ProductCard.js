@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from '../styles/ProductCard.module.css'; // Mengimpor file CSS untuk styling
+import styles from '../styles/ProductCard.module.css';
 
 export default function ProductCard({ product, onAddToCart, isLoggedIn, isOrderFilled }) {
   const [quantity, setQuantity] = useState(1);
@@ -26,7 +26,7 @@ export default function ProductCard({ product, onAddToCart, isLoggedIn, isOrderF
 
   return (
     <div className={styles.card}>
-      <img src={product.imageUrl} alt={product.name} className={styles.image} />
+      <img src={`data:image/jpeg;base64,${product.imageBase64}`} alt={product.name} className={styles.image} />
       <div className={styles.details}>
         <h3>{product.name}</h3>
         <p>{product.description}</p>

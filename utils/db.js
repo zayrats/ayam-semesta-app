@@ -1,8 +1,9 @@
-const { Sequelize } = require('sequelize');
+import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize('ayam_semesta', 'root', '', {
-  host: 'localhost',
   dialect: 'mysql',
+  dialectModule: require('mysql2'),
+  logging: false,
 });
 
 (async () => {

@@ -33,7 +33,6 @@ export default function Order() {
 
   return (
     <div>
-      <Navbar />
       <main className={styles.main}>
         <h1 className={styles.title}>Order Your Favorite Chicken</h1>
         <p className={styles.description}>Please fill out the form below to complete your order.</p>
@@ -81,7 +80,6 @@ export default function Order() {
           <button type="submit" className={styles.button}>Proceed to Menu</button>
         </form>
       </main>
-      <Footer />
     </div>
   );
 }

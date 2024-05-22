@@ -1,32 +1,30 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../utils/db';
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = require('../utils/db');
 
 const User = sequelize.define('User', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
+    unique: true
   },
   password: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: false
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: false
   },
   phone: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: false
   },
+  role: {
+    type: DataTypes.STRING,
+    defaultValue: 'user' // default role is user, can be 'admin'
+  }
 }, {
-  tableName: 'users',
-  timestamps: false,
+  timestamps: true // This will add the createdAt and updatedAt columns
 });
 
-export default User;
+module.exports = User;
