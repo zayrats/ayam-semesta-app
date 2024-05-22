@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styles from '../styles/Login.module.css';
 import { AuthContext } from '../context/AuthContext';
+import { data } from 'autoprefixer';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -36,6 +37,7 @@ export default function Login() {
         }
       } else {
         const errorData = await res.json();
+        console.log(data);
         setError(errorData.message || 'Login failed. Please check your credentials or register an account.');
       }
     } catch (error) {
