@@ -27,6 +27,7 @@ export default function Login() {
       console.log(res);
       if (res.ok) {
         const data = await res.json();
+        console.log(data);
         login(data.user, data.token);
         if (data.user.role === 'admin') {
           router.push('/admin/dashboard');
