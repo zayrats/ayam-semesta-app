@@ -36,37 +36,41 @@
 //   }
 // }
 
-const User = require('../../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const sequelize = require('../../utils/db');
+const User = require("../../models/User");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const sequelize = require("../../utils/db");
 
-export default async function handler(req, res) {
-  if (req.method === 'POST') {
-    const { email, password } = req.body;
-    console.log(email, password);   
+export default async function POST(req, res) {
+  // if (req.method === 'POST') {
+  const { email, password } = req.body;
+  console.log(email, password);
 
-    try {
-      await sequelize.sync(); // Ensure the database is synced
-      const user = await User.findOne({ where: { email } });
-      if (!user) {
-        return res.status(400).json({ message: 'User not found' });
-      }
-
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ message: 'Invalid credentials' });
-      }
-
-      const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
-
-      res.status(200).json({ user, token });
-    } catch (error) {
-      console.error('Login error:', error); // Log the error to the console
-      res.status(500).json({ message: 'Internal server error' });
+  try {
+    await sequelize.sync(); // Ensure the database is synced
+    const user = await User.findOne({ where: { email } });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
     }
-  } else {
-    res.setHeader('Allow', ['POST']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    const token = jwt.sign(
+      { id: user.id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.status(200).json({ user, token });
+  } catch (error) {
+    console.error("Login error:", error); // Log the error to the console
+    res.status(500).json({ message: "Internal server error" });
   }
+  // } else {
+  //   res.setHeader('Allow', ['POST']);
+  //   res.status(405).end(`Method ${req.method} Not Allowed`);
+  // }
 }
