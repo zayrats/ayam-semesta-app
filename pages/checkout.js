@@ -18,7 +18,7 @@ export default function Checkout() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    const res = await fetch('https://ayam-semesta-app.vercel.app/api/checkout', {
+    const res = await fetch('/api/checkout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

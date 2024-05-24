@@ -68,15 +68,19 @@ export default function Menu() {
           <img src="/images/cart-icon.png" alt="Cart" />
         </div>
         <div className={styles.products}>
-          {products.map(product => (
-            <ProductCard 
-              key={product.id} 
-              product={product} 
-              onAddToCart={isLoggedIn && isOrderFilled ? handleAddToCart : null} 
-              isLoggedIn={isLoggedIn} 
-              isOrderFilled={isOrderFilled}
-            />
-          ))}
+          {products.length > 0 ? (
+            products.map(product => (
+              <ProductCard 
+                key={product.id} 
+                product={product} 
+                onAddToCart={isLoggedIn && isOrderFilled ? handleAddToCart : null} 
+                isLoggedIn={isLoggedIn} 
+                isOrderFilled={isOrderFilled}
+              />
+            ))
+          ) : (
+            <p>No products available</p>
+          )}
         </div>
         {isLoggedIn && isOrderFilled && (
           <button className={styles.button} onClick={handleProceedToPayment}>Proceed to Payment</button>

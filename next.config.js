@@ -1,6 +1,6 @@
 module.exports = {
     env: {
-      API_URL: 'https://ayam-semesta-app.vercel.app/api',
+      API_URL: 'zayratshop.com/api',
     },
   };
   

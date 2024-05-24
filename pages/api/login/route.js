@@ -36,19 +36,20 @@
 //   }
 // }
 
-const User = require("../../models/User");
+const User = require("../../../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const sequelize = require("../../utils/db");
-
+const sequelize = require("../../../utils/db");
+const { executeQuery } = require("../../../lib/db");
+ 
 export default async function POST(req, res) {
   // if (req.method === 'POST') {
   const { email, password } = req.body;
   console.log(email, password);
 
   try {
-    await sequelize.sync(); // Ensure the database is synced
-    const user = await User.findOne({ where: { email } });
+    // await sequelize.sync(); // Ensure the database is synced
+    const user = await executeQuery('SELECT * FROM menu WHERE email=${email}');
     if (!user) {
       return res.status(400).json({ message: "User not found" });
     }

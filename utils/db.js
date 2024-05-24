@@ -1,9 +1,10 @@
 import { Sequelize } from 'sequelize';
+import mysql2 from 'mysql2';
 
 const sequelize = new Sequelize('u517506439_ayam_semesta', 'u517506439_ayam', 'Sury4t3g4r!', {
   host: 'zayratshop.com',
   dialect: 'mysql',
-  dialectModule: require('mysql2'),
+  dialectModule: mysql2,
   logging: false,
 });
 
@@ -16,4 +17,4 @@ const sequelize = new Sequelize('u517506439_ayam_semesta', 'u517506439_ayam', 'S
   }
 })();
 
-module.exports = sequelize;
+export default sequelize;
